@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { CardCollectionService } from './card-collection.service';
+
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'new-app-template';
+  title = 'Solitaire V5';
+
+  constructor( private collectService: CardCollectionService) {
+
+  }
+
+  ngOnInit() {
+    this.collectService.generateDeck();
+    this.collectService.distributeCards();
+    
+  }
 }
+
