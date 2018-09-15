@@ -6,4 +6,10 @@ export class Card {
         this.rank = rank;
         this.suit = suit;
     }
+
+    //private cardId = this.suit+"-"+this.rank;
+
+    get id() {
+        return this.suit + '-' + this.rank;
+    }
 }

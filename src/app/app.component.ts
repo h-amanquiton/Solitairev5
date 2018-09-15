@@ -18,6 +18,7 @@ export class AppComponent {
     this.collectService.generateDeck();
     this.collectService.distributeCards();
     
+    
   }
 }
 

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Deck } from './deck';
 import { Card } from './card';
-import { deck, tableau } from './cardCollection';
+import { deckArr, tableau } from './cardCollection';
 
 let numOfRanks = 13;
 let numOfSuits = 4;
@@ -10,7 +10,6 @@ let numOfSuits = 4;
   providedIn: 'root'
 })
 export class CardCollectionService {
-  newDeck: Deck = new Deck;
 
   constructor() { }
 
@@ -18,10 +17,13 @@ export class CardCollectionService {
     for (let s = 0; s < numOfSuits; s++){
       for (let r = 0; r < numOfRanks; r++){
         let cardN = new Card(r,s);
-        deck.push(cardN);
+        deckArr.push(cardN);
+       // console.log(cardN.id);
+      
       }
     }
   //  console.log(deck);
+  console.log(deckArr);
   }
 
   distributeCards() {
@@ -31,10 +33,10 @@ export class CardCollectionService {
         if ( col < row ) {
           continue;
         }
-        tableau[col].push(deck.pop());
+        tableau[col].push(deckArr.pop());
         
       }
     }
-    console.log(tableau);
+  //  console.log(tableau);
   }
 }
