@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+.cards {
+    height: 80px;
+    width: 60px;
+    background-size: cover;
+
+}
+
+#deck > div[class="cards"] {
+    position: absolute;
+}

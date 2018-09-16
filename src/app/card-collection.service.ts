@@ -16,7 +16,7 @@ export class CardCollectionService {
   generateDeck() {
     for (let s = 0; s < numOfSuits; s++){
       for (let r = 0; r < numOfRanks; r++){
-        let cardN = new Card(r,s);
+        let cardN = new Card(r, s, false);
         deckArr.push(cardN);
        // console.log(cardN.id);
       

@@ -1,3 +1,4 @@
 <div id = 'deck' class='container'>
-  <div class='cards' *ngFor='let card of deck' id='{{card.id}}'></div>
+  <div class='cards' *ngFor='let card of deck; let i = index' id='{{card.id}}'
+    [style.backgroundImage]="'url('+ card.getImg() +')'"></div>
 </div>
