@@ -8,5 +8,15 @@
 #deck {
     float: right;
     margin-right: 75px;
+    height: 80px;
+    width: 60px;
     
+}
+
+#tableau0 {
+    float: right;
+    position: relative;
+    height: 600px;
+    width: 500px;
+    top: 120px;
 }

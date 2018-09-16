@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Deck } from './deck';
 import { Card } from './card';
-import { deckArr, tableau } from './cardCollection';
+import { deckArr, tableauArr } from './cardCollection';
 
 let numOfRanks = 13;
 let numOfSuits = 4;
@@ -33,10 +33,14 @@ export class CardCollectionService {
         if ( col < row ) {
           continue;
         }
-        tableau[col].push(deckArr.pop());
+        if (col === row ) {
+          let lastElement = deckArr.length - 1;
+          deckArr[lastElement].faceUp = true;
+        }
+        tableauArr[col].push(deckArr.pop());
         
       }
     }
-  //  console.log(tableau);
+    console.log(tableauArr);
   }
 }

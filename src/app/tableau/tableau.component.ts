@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { CardCollectionService } from '../card-collection.service';
+import { tableauArr } from '../cardCollection';
+
 @Component({
   selector: 'app-tableau',
   templateUrl: './tableau.component.html',
@@ -7,7 +10,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TableauComponent implements OnInit {
 
-  constructor() { }
+  tableau = tableauArr;
+
+  constructor(collectService: CardCollectionService) { }
 
   ngOnInit() {
   }

@@ -1,0 +1,17 @@
+#tableau {
+    border: 1px solid blue;
+    
+
+}
+
+.columns {
+    height: 80px;
+    width: 60px;
+    float: left;
+    margin-right: 10px;
+
+}
+
+.cards {
+    border: 1px solid black;
+}

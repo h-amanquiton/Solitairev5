@@ -1,3 +1,8 @@
-<p>
-  tableau works!
-</p>
+<div id='tableau' class='container'>
+  <div class='columns' *ngFor='let column of tableau; let c = index'
+    name='tabColumn'>
+    <div class='cards' *ngFor='let card of column; let r = index'
+      [style.backgroundImage]="'url('+ card.getImg() +')'">
+    </div> 
+  </div>
+</div>

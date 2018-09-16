@@ -9,3 +9,6 @@
 #deck > div[class="cards"] {
     position: absolute;
 }
+html {
+    background-color: cornsilk;
+}
