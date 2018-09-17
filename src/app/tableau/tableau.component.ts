@@ -12,9 +12,17 @@ export class TableauComponent implements OnInit {
 
   tableau = tableauArr;
 
+  drag(e) {
+  
+  }
+  
+
+
   constructor(collectService: CardCollectionService) { }
 
   ngOnInit() {
+   
+    
   }
 
 }

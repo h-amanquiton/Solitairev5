@@ -2,7 +2,13 @@
   <div class='columns' *ngFor='let column of tableau; let c = index'
     name='tabColumn'>
     <div class='cards' *ngFor='let card of column; let r = index'
-      [style.backgroundImage]="'url('+ card.getImg() +')'">
+      [ngStyle]="{'background-image':'url('+ card.getImg() +')',
+        'margin-top':r*30+'px', 'position':'absolute'}"
+      [attr.row-index]="r" [attr.col-index]="c" 
+      id='{{card.id}}' [draggable]='card.faceUp'
+      (drop)="drop($event)" (onDrag)="drag($event)" 
+      
+      >
     </div> 
   </div>
 </div>
