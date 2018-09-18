@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CardCollectionService } from './card-collection.service';
+import { foundationArr } from './cardCollection';
 
 
 @Component({
@@ -17,6 +18,7 @@ export class AppComponent {
   ngOnInit() {
     this.collectService.generateDeck();
     this.collectService.distributeCards();
+    console.log(foundationArr);
     
     
   }

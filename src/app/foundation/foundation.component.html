@@ -1,5 +1,18 @@
-<div id='foundation' class='container'>
+<div id='foundation' class='container'
+    (drop)="moveservice.foundationDrop($event)"
+>
   <div class='foundHolders' *ngFor='let foundBox of foundation; let f = index'
   [ngStyle]="{'border':'1px solid black',
-      'height':'80px', 'width': '60px', 'background-color':'peachpuff'}"></div>
+      'height':'80px', 'width': '60px', 'background-color':'peachpuff'}"
+       id="found" (drop)="moveservice.foundationDrop($event)" (dragover)="moveservice.foundDragOver($event)"
+       (click)="moveservice.fClick($event)"
+      >
+      <div class='cards' *ngFor='let cards of foundBox; let Idx = index'
+      [ngStyle]="{'background-image':'url('+ card.getImg() +')',
+        'position':'absolute'}"  id='{{card.id}}'
+        (click)="moveservice.fClick($event)" (drop)="moveservice.foundationDrop($event)"
+        >
+      
+      </div>
+    </div>
 </div>

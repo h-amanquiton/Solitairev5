@@ -10,11 +10,10 @@ let dropId;
 let dropRow;
 let dropCol;
 let draggedCard: Card[];
-let dragging: boolean;
-let dragCardIsRed;
-let dropCardIsRed;
 let dropIsLegal: boolean;
 let cardDraggable: boolean;
+let dropTarget: Card;
+let currentCard: Card;
 
 @Injectable({
   providedIn: 'root'
@@ -43,18 +42,19 @@ export class MoveService {
     draggedTargetId = event.target.id;
     draggedRow = document.getElementById(draggedTargetId).getAttribute('row-index');
     draggedCol = document.getElementById(draggedTargetId).getAttribute('col-index');
+    currentCard = tableauArr[draggedCol][draggedRow];
 
-     if (tableauArr[draggedCol][draggedRow].faceUp) {
+     if (currentCard.faceUp) {
        cardDraggable = true;
     } else {
       cardDraggable = false;
     } 
 
-    if (cardDraggable) {
-      draggedCard = tableauArr[draggedCol].splice(draggedRow);
-      console.log(draggedCard);
+    // if (cardDraggable) {
+    //   draggedCard = tableauArr[draggedCol].splice(draggedRow);
+    //   console.log(draggedCard);
 
-    }
+    // }
   }
 
   dragOver(event) {
@@ -63,12 +63,61 @@ export class MoveService {
     dropId = event.target.id;
     dropRow = document.getElementById(dropId).getAttribute('row-index');
     dropCol = document.getElementById(dropId).getAttribute('col-index');
+    dropTarget = tableauArr[dropCol][dropRow];
+    
+
     
 
   }
 
   drop(event) {
+
+    if (dropTarget.rank - currentCard.rank === 1) {
+      if 
+      ((dropTarget.cardIsRed && !currentCard.cardIsRed) ||
+       (!dropTarget.cardIsRed && currentCard.cardIsRed))
+      {
+        if (cardDraggable) {
+          draggedCard = tableauArr[draggedCol].splice(draggedRow);
+          console.log(draggedCard);
     
-    tableauArr[dropCol].push(draggedCard.pop());
+        }
+
+        tableauArr[dropCol].push(draggedCard.pop());
+        this.flipCards();
+      }
+    } 
   }
+
+  flipCards() {
+    let numCol = 7;
+    
+    for (let c = 0; c < numCol; c++) {
+      let lastIdx = tableauArr[c].length - 1;
+      if (!tableauArr[c][lastIdx].faceUp) {
+        tableauArr[c][lastIdx].faceUp = true;
+      }
+    }
+  }
+
+  foundationDrop(event) {
+    if (currentCard.rank === 0){
+      if (cardDraggable) {
+        draggedCard = tableauArr[draggedCol].splice(draggedRow);
+        console.log(draggedCard);
+  
+      }
+      foundationArr[currentCard.suit].push(draggedCard.pop());
+    }
+  }
+
+   foundDragOver(event) {
+     event.preventDefault(); 
+    // let fDropId = event.target.id;
+    // console.log(fDropId);
+   }
+
+   fClick(event){
+    console.log(event.target.id);
+   }
 }
