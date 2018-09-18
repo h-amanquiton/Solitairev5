@@ -5,7 +5,7 @@
   [ngStyle]="{'border':'1px solid black',
       'height':'80px', 'width': '60px', 'background-color':'peachpuff'}"
       [attr.fIndex]="f"
-       id="found" (drop)="moveservice.foundationDrop($event)" 
+       id="found" (drop)="moveservice.initFoundationDrop($event)" 
        (dragover)="moveservice.foundDragOver($event)"
        (click)="moveservice.fclick($event)"
        
@@ -13,6 +13,8 @@
       <div class='cards' *ngFor='let card of foundBox; let Idx = index'
         [ngStyle]="{'background-image':'url('+ card.getImg() +')',
         'position':'absolute'}"  id='{{card.id}}'
+        (drop)="moveservice.foundationDrop($event)" (dragover)="moveservice.fDragOver($event)"
+        [attr.suitVal]="card.suit"
         >
       
       </div>

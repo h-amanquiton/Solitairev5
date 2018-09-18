@@ -16,6 +16,7 @@ let dropTarget: Card;
 export let currentCard: Card;
 let wasteTopCard: Card;
 let numCol: number = 7;
+let dropSuit;
     
 
 
@@ -128,17 +129,30 @@ export class MoveService {
 
     //foundation methods
 
-  foundationDrop(event) {
-    if (currentCard.rank === 0){
-      if (cardDraggable) {
-        draggedCard = tableauArr[draggedCol].splice(draggedRow);
-        console.log(draggedCard);
-  
+  initFoundationDrop(event) {
+    if (cardFromTableau) {
+      if (currentCard.rank === 0) {
+        if (cardDraggable) {
+          draggedCard = tableauArr[draggedCol].splice(draggedRow);
+          console.log(draggedCard);
+    
+        }
+        foundationArr[currentCard.suit].push(draggedCard.pop());
+        this.flipCards();
+        console.log(foundationArr);
       }
-      foundationArr[currentCard.suit].push(draggedCard.pop());
-      this.flipCards();
-      console.log(foundationArr);
+    } else if (!cardFromTableau) {
+      
+      if (!(wasteArr.length === 0)) {
+        wasteTopCard = wasteArr[wasteArr.length-1];
+
+        if (wasteTopCard.rank === 0) {
+          foundationArr[wasteTopCard.suit].push(wasteArr.pop());
+        }
+      }
+      
     }
+    
   }
 
    foundDragOver(event) {
@@ -204,14 +218,40 @@ export class MoveService {
         tableauArr[v].push(wasteArr.pop());
       }
     }
-    
   }
 
   testDragOver(event) {
    // console.log(event.target);
    event.preventDefault();
-  
+  }
 
+  foundationDrop(event) {
+    let lastElem = foundationArr[dropSuit].length - 1;
+    dropTarget = foundationArr[dropSuit][lastElem];
+    if (cardFromTableau) {
+      if (currentCard.rank - dropTarget.rank === 1) {
+        if (currentCard.suit === dropTarget.suit) {
+          if (cardDraggable) {
+            draggedCard = tableauArr[draggedCol].splice(draggedRow);
+          }
+          foundationArr[dropTarget.suit].push(draggedCard.pop());
+          this.flipCards();
+        }
+      }
+    } else if (!cardFromTableau) {
+      wasteTopCard = wasteArr[wasteArr.length-1];
+      if (wasteTopCard.rank - dropTarget.rank === 1) {
+        if (wasteTopCard.suit === dropTarget.suit) {
+          foundationArr[dropTarget.suit].push(wasteArr.pop());
+        }
+      }
+    }
+  }
+
+  fDragOver(event) {
+    event.preventDefault();
+    dropSuit = document.getElementById(event.target.id).getAttribute('suitVal');
+    
   }
 
 }
