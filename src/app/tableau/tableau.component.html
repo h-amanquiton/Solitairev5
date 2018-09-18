@@ -1,6 +1,7 @@
 <div id='tableau' class='container'>
   <div class='columns' *ngFor='let column of tableau; let c = index'
-    name='tabColumn'>
+    name='tabColumn'
+    [ngStyle]="{'border':'1px solid black'}">
     <div class='cards' *ngFor='let card of column; let r = index; last as isLast'
       [ngStyle]="{'background-image':'url('+ card.getImg() +')',
         'margin-top':r*30+'px', 'position':'absolute'}"

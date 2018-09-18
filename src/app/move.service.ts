@@ -4,16 +4,16 @@ import { wasteArr, tableauArr, foundationArr } from './cardCollection';
 import { Card } from './card';
 
 let draggedTargetId;
-let draggedRow; 
-let draggedCol; 
+export let draggedRow; 
+export let draggedCol; 
 let dropId;
 let dropRow;
 let dropCol;
-let draggedCard: Card[];
+export let draggedCard: Card[];
 let dropIsLegal: boolean;
-let cardDraggable: boolean;
+export let cardDraggable: boolean;
 let dropTarget: Card;
-let currentCard: Card;
+export let currentCard: Card;
 
 @Injectable({
   providedIn: 'root'
@@ -46,6 +46,7 @@ export class MoveService {
 
      if (currentCard.faceUp) {
        cardDraggable = true;
+       console.log(currentCard.rank)
     } else {
       cardDraggable = false;
     } 
@@ -108,6 +109,8 @@ export class MoveService {
   
       }
       foundationArr[currentCard.suit].push(draggedCard.pop());
+      this.flipCards();
+      console.log(foundationArr);
     }
   }
 
@@ -117,7 +120,7 @@ export class MoveService {
     // console.log(fDropId);
    }
 
-   fClick(event){
+   fclick(event) {
     console.log(event.target.id);
    }
 }
