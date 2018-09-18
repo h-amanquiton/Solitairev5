@@ -16,7 +16,7 @@ export class DeckComponent implements OnInit {
   constructor(collectService: CardCollectionService) { }
 
   ngOnInit() {
-    console.log(this.deck);
+    
   }
 
 }

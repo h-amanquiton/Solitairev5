@@ -1,13 +1,13 @@
 <div id='tableau' class='container'>
   <div class='columns' *ngFor='let column of tableau; let c = index'
     name='tabColumn'>
-    <div class='cards' *ngFor='let card of column; let r = index'
+    <div class='cards' *ngFor='let card of column; let r = index; last as isLast'
       [ngStyle]="{'background-image':'url('+ card.getImg() +')',
         'margin-top':r*30+'px', 'position':'absolute'}"
       [attr.row-index]="r" [attr.col-index]="c" 
       id='{{card.id}}' [draggable]='card.faceUp'
-      (drop)="drop($event)" (drag)="drag($event)"
-      (click)="click($event)" (dragover)="dragover($event)" (allowdrop)="allowdrop($event)"
+      (click)="moveservice.click($event)" (drag)="moveservice.drag($event)"
+      (drop)="moveservice.drop($event)" (dragover)="moveservice.dragOver($event)"
       
       >
     </div> 

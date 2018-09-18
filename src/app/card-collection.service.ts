@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-
 import { Card } from './card';
 import { deckArr, tableauArr } from './cardCollection';
 
@@ -16,14 +15,20 @@ export class CardCollectionService {
   generateDeck() {
     for (let s = 0; s < numOfSuits; s++){
       for (let r = 0; r < numOfRanks; r++){
-        let cardN = new Card(r, s, false);
-        deckArr.push(cardN);
+        if (s === 2 || s === 3 ) {
+          let cardN = new Card(r, s, false, true);
+          deckArr.push(cardN);
+        } else {
+          let cardN = new Card(r, s, false, false);
+          deckArr.push(cardN);
+        }
+        
        // console.log(cardN.id);
       
       }
     }
   //  console.log(deck);
-  console.log(deckArr);
+ // console.log(deckArr);
   }
 
   distributeCards() {
@@ -41,6 +46,6 @@ export class CardCollectionService {
         
       }
     }
-    console.log(tableauArr);
+  //  console.log(tableauArr);
   }
 }

@@ -2,11 +2,13 @@ export class Card {
     rank: number;
     suit: number;
     faceUp: boolean;
+    cardIsRed: boolean;
 
-    constructor (rank, suit, faceUp) {
+    constructor (rank, suit, faceUp, cardIsRed) {
         this.rank = rank;
         this.suit = suit;
         this.faceUp = faceUp;
+        this.cardIsRed = cardIsRed;
     }
 
     //private cardId = this.suit+"-"+this.rank;

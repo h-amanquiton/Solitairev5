@@ -1,3 +1,4 @@
+import { MoveService } from './move.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -19,7 +20,10 @@ import { WasteComponent } from './waste/waste.component';
   imports: [
     BrowserModule
   ],
-  providers: [CardCollectionService],
+  providers: [
+    CardCollectionService,
+    MoveService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
