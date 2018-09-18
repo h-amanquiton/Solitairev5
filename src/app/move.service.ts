@@ -11,7 +11,6 @@ let dropId;
 let dropRow;
 let dropCol;
 export let draggedCard: Card[];
-let dropIsLegal: boolean;
 export let cardDraggable: boolean;
 let dropTarget: Card;
 export let currentCard: Card;
@@ -129,7 +128,7 @@ export class MoveService {
    }
 
    drawCard(event) {
-    if (deckArr.length == 0) {
+    if (deckArr.length === 0) {
       let wasteNum = wasteArr.length;
       for (let x = 0; x < wasteNum; x++) {
       deckArr.push(wasteArr.pop());
@@ -152,15 +151,16 @@ export class MoveService {
    // waste methods
 
    wasteDrag(event) {
-     draggedTargetId = event.target.id;
-     draggedIdx = document.getElementById(draggedTargetId).getAttribute('index');
-     currentCard = wasteArr[draggedIdx];
+      draggedTargetId = event.target.id;
+      console.log(draggedTargetId);
+    //  draggedIdx = document.getElementById(draggedTargetId).getAttribute('index');
+    //  currentCard = wasteArr[draggedIdx];
 
-     if (currentCard == wasteArr[wasteArr.length-1]) {
-       cardDraggable = true;
-     } else {
-       cardDraggable = false;
-     }
+    //  if (currentCard == wasteArr[wasteArr.length-1]) {
+    //    cardDraggable = true;
+    //  } else {
+    //    cardDraggable = false;
+    //  }
 
 
   }

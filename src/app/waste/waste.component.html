@@ -2,7 +2,7 @@
   <div class='cards' *ngFor='let wasteCards of waste; let w = index'
   [ngStyle]="{'background-image':'url('+ wasteCards.getImg() +')',
   'position':'absolute'}"
-  [attr.index]="w"
+  [attr.index]="w" (drag)="moveservice.wasteDrag($event)"
   >
     
   </div>

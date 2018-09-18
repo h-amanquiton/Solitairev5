@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { CardCollectionService } from '../card-collection.service';
 import { wasteArr } from '../cardCollection';
+import { MoveService } from '../move.service';
 
 
 @Component({
@@ -13,7 +14,10 @@ export class WasteComponent implements OnInit {
 
   waste = wasteArr;
 
-  constructor(collectService: CardCollectionService) { }
+  constructor(
+    private collectService: CardCollectionService,
+    private moveservice: MoveService
+    ) { }
 
   ngOnInit() {
   }
