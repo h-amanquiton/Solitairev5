@@ -14,6 +14,9 @@ export let draggedCard: Card[];
 export let cardDraggable: boolean;
 let dropTarget: Card;
 export let currentCard: Card;
+let wasteTopCard: Card;
+let numCol: number = 7;
+    
 
 
 
@@ -49,7 +52,7 @@ export class MoveService {
      if (currentCard.faceUp) {
        cardDraggable = true;
        cardFromTableau = true;
-       console.log(currentCard.rank)
+      // console.log(currentCard.rank)
     } else {
       cardDraggable = false;
     } 
@@ -65,8 +68,11 @@ export class MoveService {
 
     event.preventDefault(); 
     dropId = event.target.id;
-    dropRow = document.getElementById(dropId).getAttribute('row-index');
     dropCol = document.getElementById(dropId).getAttribute('col-index');
+    if (!(tableauArr[dropCol].length === 0)) {
+      dropRow = document.getElementById(dropId).getAttribute('row-index');
+    }
+    
     dropTarget = tableauArr[dropCol][dropRow];
     
 
@@ -94,7 +100,7 @@ export class MoveService {
       } 
 
     } else if (!cardFromTableau) {
-      let wasteTopCard = wasteArr[wasteArr.length - 1];
+      wasteTopCard = wasteArr[wasteArr.length - 1];
       if (dropTarget.rank - wasteTopCard.rank === 1) {
         if 
           ((dropTarget.cardIsRed && !wasteTopCard.cardIsRed) ||
@@ -108,7 +114,6 @@ export class MoveService {
   }
 
   flipCards() {
-    let numCol = 7;
     
     for (let c = 0; c < numCol; c++) {
       let lastIdx = tableauArr[c].length - 1;
@@ -180,17 +185,33 @@ export class MoveService {
     //  } else {
     //    cardDraggable = false;
     //  }
-
-
   }
 
-  wasteDrop(event) {
-    console.log('wastedropworks')
-  }
-
-
-  refreshDeck(event) {
-    console.log("clickworks");
+  emptyColDrop(event) {
+    let v = document.getElementById(event.target.id).getAttribute('colIdx');
+    if (cardFromTableau) {
+      if((currentCard.rank === 12) && (tableauArr[v].length === 0)) {
+        if (cardDraggable) {
+          draggedCard = tableauArr[draggedCol].splice(draggedRow);
+        }
+        
+        tableauArr[v].push(draggedCard.pop());
+        this.flipCards();
+      }
+    } else if (!cardFromTableau) {
+      wasteTopCard = wasteArr[wasteArr.length-1];
+      if ((wasteTopCard.rank === 12) && (tableauArr[v].length === 0)) {
+        tableauArr[v].push(wasteArr.pop());
+      }
+    }
     
   }
+
+  testDragOver(event) {
+   // console.log(event.target);
+   event.preventDefault();
+  
+
+  }
+
 }

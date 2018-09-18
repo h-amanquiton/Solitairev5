@@ -4,6 +4,8 @@ import { deckArr, tableauArr } from './cardCollection';
 
 let numOfRanks = 13;
 let numOfSuits = 4;
+let numOfColumns = 7, numOfRows = 7;
+
 
 @Injectable({
   providedIn: 'root'
@@ -32,7 +34,7 @@ export class CardCollectionService {
   }
 
   distributeCards() {
-    let numOfColumns = 7, numOfRows = 7;
+   
     for (let row = 0; row < numOfRows; row++) {
       for (let col = 0;col < numOfColumns; col++) {
         if ( col < row ) {
@@ -48,4 +50,5 @@ export class CardCollectionService {
     }
   //  console.log(tableauArr);
   }
+
 }

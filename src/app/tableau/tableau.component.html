@@ -1,7 +1,8 @@
 <div id='tableau' class='container'>
   <div class='columns' *ngFor='let column of tableau; let c = index'
-    name='tabColumn'
-    [ngStyle]="{'border':'1px solid black'}">
+    name='tabColumn' [attr.id]="c"
+    [ngStyle]="{'border':'1px solid black'}" [attr.colIdx]="c"
+    (drop)="moveservice.emptyColDrop($event)" (dragover)="moveservice.testDragOver($event)">
     <div class='cards' *ngFor='let card of column; let r = index; last as isLast'
       [ngStyle]="{'background-image':'url('+ card.getImg() +')',
         'margin-top':r*30+'px', 'position':'absolute'}"
