@@ -6,7 +6,8 @@
         'margin-top':r*30+'px', 'position':'absolute'}"
       [attr.row-index]="r" [attr.col-index]="c" 
       id='{{card.id}}' [draggable]='card.faceUp'
-      (drop)="drop($event)" (onDrag)="drag($event)" 
+      (drop)="drop($event)" (drag)="drag($event)"
+      (click)="click($event)" (dragover)="dragover($event)" (allowdrop)="allowdrop($event)"
       
       >
     </div> 
