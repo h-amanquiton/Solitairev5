@@ -13,6 +13,9 @@ export class TableauComponent implements OnInit {
   tableau = tableauArr;
 
   drag(e) {
+    var target = document.getElementById(e.target.id);
+    var rowIndex = target.getAttribute('row-index');
+    var colIndex = target.getAttribute('col-index');
   
   }
   
