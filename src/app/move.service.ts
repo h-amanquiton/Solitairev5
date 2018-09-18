@@ -4,7 +4,7 @@ import { wasteArr, tableauArr, foundationArr, deckArr } from './cardCollection';
 import { Card } from './card';
 
 let draggedTargetId;
-let draggedIdx;
+let cardFromTableau: boolean;
 export let draggedRow; 
 export let draggedCol; 
 let dropId;
@@ -14,6 +14,7 @@ export let draggedCard: Card[];
 export let cardDraggable: boolean;
 let dropTarget: Card;
 export let currentCard: Card;
+
 
 
 @Injectable({
@@ -38,7 +39,7 @@ export class MoveService {
 
   }
 
-  drag(event) {
+  tabDrag(event) {
     
     draggedTargetId = event.target.id;
     draggedRow = document.getElementById(draggedTargetId).getAttribute('row-index');
@@ -47,6 +48,7 @@ export class MoveService {
 
      if (currentCard.faceUp) {
        cardDraggable = true;
+       cardFromTableau = true;
        console.log(currentCard.rank)
     } else {
       cardDraggable = false;
@@ -74,21 +76,35 @@ export class MoveService {
 
   drop(event) {
 
-    if (dropTarget.rank - currentCard.rank === 1) {
-      if 
-      ((dropTarget.cardIsRed && !currentCard.cardIsRed) ||
-       (!dropTarget.cardIsRed && currentCard.cardIsRed))
-      {
-        if (cardDraggable) {
-          draggedCard = tableauArr[draggedCol].splice(draggedRow);
-          console.log(draggedCard);
-    
+    if (cardFromTableau) {
+      if (dropTarget.rank - currentCard.rank === 1) {
+        if 
+          ((dropTarget.cardIsRed && !currentCard.cardIsRed) ||
+            (!dropTarget.cardIsRed && currentCard.cardIsRed))
+        {
+          if (cardDraggable) {
+            draggedCard = tableauArr[draggedCol].splice(draggedRow);
+            console.log(draggedCard);
+      
+          }
+  
+          tableauArr[dropCol].push(draggedCard.pop());
+          this.flipCards();
         }
+      } 
 
-        tableauArr[dropCol].push(draggedCard.pop());
-        this.flipCards();
+    } else if (!cardFromTableau) {
+      let wasteTopCard = wasteArr[wasteArr.length - 1];
+      if (dropTarget.rank - wasteTopCard.rank === 1) {
+        if 
+          ((dropTarget.cardIsRed && !wasteTopCard.cardIsRed) ||
+          (!dropTarget.cardIsRed && wasteTopCard.cardIsRed)) {
+            tableauArr[dropCol].push(wasteArr.pop());
+          }
       }
-    } 
+    }
+
+    
   }
 
   flipCards() {
@@ -96,6 +112,9 @@ export class MoveService {
     
     for (let c = 0; c < numCol; c++) {
       let lastIdx = tableauArr[c].length - 1;
+      if (tableauArr[c].length === 0) {
+        continue;
+      }
       if (!tableauArr[c][lastIdx].faceUp) {
         tableauArr[c][lastIdx].faceUp = true;
       }
@@ -150,10 +169,10 @@ export class MoveService {
 
    // waste methods
 
-   wasteDrag(event) {
-      draggedTargetId = event.target.id;
-      console.log(draggedTargetId);
-    //  draggedIdx = document.getElementById(draggedTargetId).getAttribute('index');
+  wasteDrag(event) {
+      event.preventDefault();
+      cardFromTableau = false;
+
     //  currentCard = wasteArr[draggedIdx];
 
     //  if (currentCard == wasteArr[wasteArr.length-1]) {
@@ -163,6 +182,10 @@ export class MoveService {
     //  }
 
 
+  }
+
+  wasteDrop(event) {
+    console.log('wastedropworks')
   }
 
 

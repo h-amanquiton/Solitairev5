@@ -7,7 +7,7 @@
         'margin-top':r*30+'px', 'position':'absolute'}"
       [attr.row-index]="r" [attr.col-index]="c" 
       id='{{card.id}}' [draggable]='card.faceUp'
-      (click)="moveservice.click($event)" (drag)="moveservice.drag($event)"
+      (click)="moveservice.click($event)" (drag)="moveservice.tabDrag($event)"
       (drop)="moveservice.drop($event)" (dragover)="moveservice.dragOver($event)"
       
       >

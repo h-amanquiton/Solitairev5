@@ -1,8 +1,9 @@
 <div id='waste' class='container'>
-  <div class='cards' *ngFor='let wasteCards of waste; let w = index'
-  [ngStyle]="{'background-image':'url('+ wasteCards.getImg() +')',
+  <div class='cards' *ngFor='let wasteCard of waste; let w = index'
+  [ngStyle]="{'background-image':'url('+ wasteCard.getImg() +')',
   'position':'absolute'}"
-  [attr.index]="w" (drag)="moveservice.wasteDrag($event)"
+  [attr.wasteIdx]="w" id='wasteCard'
+  (drag)="moveservice.wasteDrag($event)"
   >
     
   </div>
