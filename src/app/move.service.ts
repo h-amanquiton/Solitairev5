@@ -12,6 +12,7 @@ let dropRow;
 let dropCol;
 export let draggedCard: Card[];
 export let cardDraggable: boolean;
+let singleCard: boolean;
 let dropTarget: Card;
 export let currentCard: Card;
 let wasteTopCard: Card;
@@ -90,14 +91,30 @@ export class MoveService {
             (!dropTarget.cardIsRed && currentCard.cardIsRed))
         {
           if (cardDraggable) {
+            let last = tableauArr[draggedCol].length -1;
             draggedCard = tableauArr[draggedCol].splice(draggedRow);
+            // if (tableauArr[draggedCol].length === 1) {
+            //   draggedCard = tableauArr[draggedCol].splice(draggedRow);
+            //   singleCard = true;
+              
+            // } else {
+            //   draggedCard = tableauArr[draggedCol].splice(draggedRow, last);
+              
+            // }
+           
             console.log(draggedCard);
       
           }
-  
+          
           tableauArr[dropCol].push(draggedCard.pop());
-          this.flipCards();
+          
+          
+          if (!(tableauArr[draggedCol].length === 0)) {
+              this.flipCards();
+          }
+          
         }
+        
       } 
 
     } else if (!cardFromTableau) {
@@ -142,7 +159,7 @@ export class MoveService {
         console.log(foundationArr);
       }
     } else if (!cardFromTableau) {
-      
+
       if (!(wasteArr.length === 0)) {
         wasteTopCard = wasteArr[wasteArr.length-1];
 
@@ -161,7 +178,8 @@ export class MoveService {
     // console.log(fDropId);
    }
 
-   fclick(event) {
+   wasteClick(event) {
+     event.preventDefault();
     console.log(event.target.id);
    }
 

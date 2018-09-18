@@ -3,7 +3,7 @@
   [ngStyle]="{'background-image':'url('+ wasteCard.getImg() +')',
   'position':'absolute'}"
   [attr.wasteIdx]="w" id='wasteCard'
-  (drag)="moveservice.wasteDrag($event)"
+  (drag)="moveservice.wasteDrag($event)" (click)="moveservice.wasteClick($event)"
   >
     
   </div>

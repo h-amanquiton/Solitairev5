@@ -51,4 +51,11 @@ export class CardCollectionService {
   //  console.log(tableauArr);
   }
 
+  shuffleDeck() {
+    let deckLength = tableauArr.length;
+    while (deckLength--) {
+      let j = Math.floor(Math.random()*(deckLength+1)); 
+    }
+  }
+
 }
