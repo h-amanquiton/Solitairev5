@@ -18,7 +18,7 @@ export class AppComponent {
   ngOnInit() {
     this.collectService.generateDeck();
     this.collectService.distributeCards();
-    console.log(foundationArr);
+    
     
     
   }

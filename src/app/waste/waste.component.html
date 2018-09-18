@@ -1,5 +1,9 @@
 <div id='waste' class='container'>
-  <div class='cards' *ngFor='let wasteCards of waste; let w = index'>
+  <div class='cards' *ngFor='let wasteCards of waste; let w = index'
+  [ngStyle]="{'background-image':'url('+ wasteCards.getImg() +')',
+  'position':'absolute'}"
+  [attr.index]="w"
+  >
     
   </div>
 

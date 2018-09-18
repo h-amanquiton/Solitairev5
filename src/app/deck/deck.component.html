@@ -1,4 +1,10 @@
-<div id = 'deck' class='container'>
+<div id = 'deck' class='container' (click)="moveservice.drawCard($event)"
+[ngStyle]="{'border':'1px solid black','height':'80px','width':'60px',
+'background-color':'red'}"
+    >
   <div class='cards' *ngFor='let card of deck; let i = index' id='{{card.id}}'
-    [style.backgroundImage]="'url('+ card.getImg() +')'"></div>
+  [ngStyle]="{'background-image':'url('+ card.getImg() +')',
+  'position':'absolute'}"
+    (click)="moveservice.drawCard($event)"
+    ></div>
 </div>

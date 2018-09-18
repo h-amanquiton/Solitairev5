@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 
-import { wasteArr, tableauArr, foundationArr } from './cardCollection';
+import { wasteArr, tableauArr, foundationArr, deckArr } from './cardCollection';
 import { Card } from './card';
 
 let draggedTargetId;
+let draggedIdx;
 export let draggedRow; 
 export let draggedCol; 
 let dropId;
@@ -14,6 +15,7 @@ let dropIsLegal: boolean;
 export let cardDraggable: boolean;
 let dropTarget: Card;
 export let currentCard: Card;
+
 
 @Injectable({
   providedIn: 'root'
@@ -101,6 +103,8 @@ export class MoveService {
     }
   }
 
+    //foundation methods
+
   foundationDrop(event) {
     if (currentCard.rank === 0){
       if (cardDraggable) {
@@ -123,4 +127,47 @@ export class MoveService {
    fclick(event) {
     console.log(event.target.id);
    }
+
+   drawCard(event) {
+    if (deckArr.length == 0) {
+      let wasteNum = wasteArr.length;
+      for (let x = 0; x < wasteNum; x++) {
+      deckArr.push(wasteArr.pop());
+      deckArr[deckArr.length-1].faceUp = false;
+      }
+    } else {
+      for (let i = 0; i < 3 ; i++) {
+      
+        wasteArr.push(deckArr.pop());
+        wasteArr[wasteArr.length-1].faceUp = true;
+      }
+      console.log(wasteArr);
+    }
+
+
+    
+
+   }
+
+   // waste methods
+
+   wasteDrag(event) {
+     draggedTargetId = event.target.id;
+     draggedIdx = document.getElementById(draggedTargetId).getAttribute('index');
+     currentCard = wasteArr[draggedIdx];
+
+     if (currentCard == wasteArr[wasteArr.length-1]) {
+       cardDraggable = true;
+     } else {
+       cardDraggable = false;
+     }
+
+
+  }
+
+
+  refreshDeck(event) {
+    console.log("clickworks");
+    
+  }
 }
