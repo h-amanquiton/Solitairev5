@@ -10,7 +10,7 @@
        (click)="moveservice.fclick($event)"
        
       >
-      <div class='cards' *ngFor='let cards of foundBox; let Idx = index'
+      <div class='cards' *ngFor='let card of foundBox; let Idx = index'
         [ngStyle]="{'background-image':'url('+ card.getImg() +')',
         'position':'absolute'}"  id='{{card.id}}'
         >
