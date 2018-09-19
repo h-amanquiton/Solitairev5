@@ -3,7 +3,7 @@
 >
   <div class='foundHolders' *ngFor='let foundBox of foundation; let f = index'
   [ngStyle]="{'border':'1px solid black',
-      'height':'80px', 'width': '60px', 'background-color':'peachpuff'}"
+      'height':'80px', 'width': '60px', 'background-color':'skyblue'}"
       [attr.fIndex]="f"
        id="found" (drop)="moveservice.initFoundationDrop($event)" 
        (dragover)="moveservice.foundDragOver($event)"

@@ -34,7 +34,7 @@
     margin-right: 30px;
     height: 80px;
     width: 60px;
-    background-color: peachpuff;
+    background-color: cyan;
     border: 1px solid black;
     position: relative;
 }
@@ -48,8 +48,19 @@
     float: left;
     height: 300px;
     width: 200px;
-    border: 1px solid yellow;
     position: relative;
     right: 315px;
     left: 300px;
+}
+
+#win {
+    height: 100px;
+    width: 180px;
+    background-color: aquamarine;
+    display: none;
+    position: relative;
+    float: top;
+    text-align: center;
+    left: 400px;
+    font-size: 35px;
 }

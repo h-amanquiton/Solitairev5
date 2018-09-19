@@ -287,7 +287,7 @@ export class MoveService {
           (foundationArr[1].length === 13) &&
           (foundationArr[2].length === 13) &&
           (foundationArr[3].length === 13)) {
-
+            document.getElementById("win").style.display = "block";
             console.log ('you win');
 
       }

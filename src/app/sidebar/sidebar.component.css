@@ -2,10 +2,12 @@
     background-color: rgb(130, 240, 255);
     height: 300px;
     width: 200px;
+    position: relative;
+    right: 280px;
 }
 
 .button {
-    height: 90px;
+    height: 89px;
     width: 150px;
     background-color: azure;
     float: top;
@@ -13,6 +15,10 @@
     margin-bottom: 10px;
     position: relative;
     text-align: center;
+    -moz-box-shadow:    3px 3px 5px 6px #ccc;
+    -webkit-box-shadow: 3px 3px 5px 6px #ccc;
+    box-shadow:         3px 3px 5px 6px #ccc;
+    padding-bottom: -10px;
     
 
 }

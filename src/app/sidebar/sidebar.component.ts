@@ -5,6 +5,7 @@ import { Card } from './../card';
 import { Component, OnInit } from '@angular/core';
 
 let clear: boolean = false;
+let optiontoggle: boolean = true;
 
 @Component({
   selector: 'app-sidebar',
@@ -18,8 +19,22 @@ export class SidebarComponent implements OnInit {
   ngOnInit() {
   }
    startGameNoShuff(event) {
+     
     this.cardcollect.generateDeck();
     this.cardcollect.distributeCards();
+
+    if (optiontoggle) {
+      document.getElementById('startWith').style.display = 'none';
+      document.getElementById('startWithout').style.display = 'none';
+      optiontoggle = false;
+    } else if (!optiontoggle) {
+      document.getElementById('reset').style.display = 'block';
+      document.getElementById('startWith').style.display = 'none';
+      document.getElementById('startWith').style.display = 'none';
+      
+  
+    }
+   
    }
 
    gameReset(event) {
@@ -53,6 +68,10 @@ export class SidebarComponent implements OnInit {
       this.cardcollect.generateDeck();
       clear = false;
     }
+    document.getElementById('startWith').style.display = 'block';
+    document.getElementById('startWithout').style.display = 'block';
+    document.getElementById('reset').style.display = 'none';
+
 
    }
 
@@ -60,6 +79,8 @@ export class SidebarComponent implements OnInit {
      this.cardcollect.generateDeck();
      this.cardcollect.shuffleDeck();
      this.cardcollect.distributeCards();
+     document.getElementById('startWith').style.display = 'none';
+    document.getElementById('startWithout').style.display = 'none';
    }
 
 
