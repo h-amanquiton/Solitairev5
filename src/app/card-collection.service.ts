@@ -52,9 +52,12 @@ export class CardCollectionService {
   }
 
   shuffleDeck() {
-    let deckLength = tableauArr.length;
+    let deckLength = deckArr.length;
     while (deckLength--) {
-      let j = Math.floor(Math.random()*(deckLength+1)); 
+      let j = Math.floor(Math.random()*(deckLength+1));
+      let temp = deckArr[deckLength];
+      deckArr[deckLength] = deckArr[j];
+      deckArr[j] = temp; 
     }
   }
 

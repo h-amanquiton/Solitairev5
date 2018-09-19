@@ -1,5 +1,11 @@
 <div id="mainContainer">
-  <div id="startWith" class="button"></div>
-  <div id="startWithout" class="button"></div>
-  <div id="reset" class="button"></div>
+  <div id="startWith" class="button"
+    (click)="shuffle($event)"
+  >Start with shuffle</div>
+  <div id="startWithout" class="button"
+    (click)="startGameNoShuff($event)"
+  >Start without</div>
+  <div id="reset" class="button"
+  (click)="gameReset($event)">
+    Reset</div>
 </div>

@@ -3,6 +3,7 @@ import { CardCollectionService } from './card-collection.service';
 import { foundationArr } from './cardCollection';
 
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -16,8 +17,8 @@ export class AppComponent {
   }
 
   ngOnInit() {
-    this.collectService.generateDeck();
-    this.collectService.distributeCards();
+    //this.collectService.generateDeck();
+    //this.collectService.distributeCards();
     
     
     

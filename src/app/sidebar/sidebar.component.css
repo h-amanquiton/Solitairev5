@@ -6,9 +6,13 @@
 
 .button {
     height: 90px;
-    width: 70px;
+    width: 150px;
     background-color: azure;
-   
+    float: top;
+    margin: auto;
     margin-bottom: 10px;
+    position: relative;
+    text-align: center;
+    
 
 }
