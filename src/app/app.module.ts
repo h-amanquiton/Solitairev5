@@ -8,6 +8,8 @@ import { DeckComponent } from './deck/deck.component';
 import { TableauComponent } from './tableau/tableau.component';
 import { FoundationComponent } from './foundation/foundation.component';
 import { WasteComponent } from './waste/waste.component';
+import { AppRoutingModule } from './/app-routing.module';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -15,10 +17,12 @@ import { WasteComponent } from './waste/waste.component';
     DeckComponent,
     TableauComponent,
     FoundationComponent,
-    WasteComponent
+    WasteComponent,
+    SidebarComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    AppRoutingModule
   ],
   providers: [
     CardCollectionService,

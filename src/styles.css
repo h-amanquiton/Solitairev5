@@ -10,7 +10,8 @@
     position: absolute;
 }
 html {
-    background-color: cornsilk;
+    
+    background-image: url('./assets/cards/space4.JPG');
     
 }
 

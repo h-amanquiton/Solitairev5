@@ -37,7 +37,7 @@ export class Card {
         if (this.faceUp) {
             return "../assets/cards/" + this.suit + '-' + this.rank + ".JPG";
         } else {
-            return '../assets/cards/backDisplay.jpg';
+            return '../assets/cards/backDisplay.JPG';
         }
         //return "../assets/cards/" + this.suit + '-' + this.rank + ".JPG";
     }

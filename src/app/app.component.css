@@ -3,6 +3,7 @@
     width: 900px;
     border: 2px solid black;
     margin-left: 50px;
+    float: left;
 }
 
 #deck {
@@ -36,4 +37,18 @@
     background-color: peachpuff;
     border: 1px solid black;
     position: relative;
+}
+
+#header {
+    color: aquamarine;
+    
+}
+
+#sidebar {
+    float: right;
+    height: 300px;
+    width: 200px;
+    border: 1px solid yellow;
+    position: relative;
+    right: 315px;
 }

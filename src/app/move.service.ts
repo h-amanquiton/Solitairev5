@@ -17,7 +17,9 @@ let dropTarget: Card;
 export let currentCard: Card;
 let wasteTopCard: Card;
 let numCol: number = 7;
+let numSuits: number = 4;
 let dropSuit;
+let rowIndex: number;
     
 
 
@@ -50,6 +52,7 @@ export class MoveService {
     draggedRow = document.getElementById(draggedTargetId).getAttribute('row-index');
     draggedCol = document.getElementById(draggedTargetId).getAttribute('col-index');
     currentCard = tableauArr[draggedCol][draggedRow];
+    rowIndex = draggedRow;
 
      if (currentCard.faceUp) {
        cardDraggable = true;
@@ -83,30 +86,30 @@ export class MoveService {
   }
 
   drop(event) {
+    
 
+    
     if (cardFromTableau) {
       if (dropTarget.rank - currentCard.rank === 1) {
         if 
           ((dropTarget.cardIsRed && !currentCard.cardIsRed) ||
             (!dropTarget.cardIsRed && currentCard.cardIsRed))
         {
-          if (cardDraggable) {
-            let last = tableauArr[draggedCol].length -1;
-            draggedCard = tableauArr[draggedCol].splice(draggedRow);
-            // if (tableauArr[draggedCol].length === 1) {
-            //   draggedCard = tableauArr[draggedCol].splice(draggedRow);
-            //   singleCard = true;
-              
-            // } else {
-            //   draggedCard = tableauArr[draggedCol].splice(draggedRow, last);
-              
-            // }
-           
-            console.log(draggedCard);
-      
-          }
           
-          tableauArr[dropCol].push(draggedCard.pop());
+            if (cardDraggable ) {
+              
+              let difference = ((tableauArr[draggedCol].length) - rowIndex);
+              console.log(difference);
+              draggedCard = tableauArr[draggedCol].splice(draggedRow, difference);
+             
+              for (let z = 0; z < difference; z++) {
+                tableauArr[dropCol].push(draggedCard.shift());
+              }
+              
+          
+              }
+            
+              
           
           
           if (!(tableauArr[draggedCol].length === 0)) {
@@ -130,6 +133,7 @@ export class MoveService {
 
     
   }
+
 
   flipCards() {
     
@@ -223,12 +227,16 @@ export class MoveService {
     let v = document.getElementById(event.target.id).getAttribute('colIdx');
     if (cardFromTableau) {
       if((currentCard.rank === 12) && (tableauArr[v].length === 0)) {
+        let difference = (tableauArr[draggedCol].length ) - rowIndex;
         if (cardDraggable) {
-          draggedCard = tableauArr[draggedCol].splice(draggedRow);
+          draggedCard = tableauArr[draggedCol].splice(draggedRow, difference);
+        }
+          console.log(difference);
+        for (let z = 0; z < difference; z++) {
+          tableauArr[v].push(draggedCard.shift());
+          this.flipCards();
         }
         
-        tableauArr[v].push(draggedCard.pop());
-        this.flipCards();
       }
     } else if (!cardFromTableau) {
       wasteTopCard = wasteArr[wasteArr.length-1];
@@ -264,11 +272,25 @@ export class MoveService {
         }
       }
     }
+    this.checkWin();
   }
 
   fDragOver(event) {
     event.preventDefault();
     dropSuit = document.getElementById(event.target.id).getAttribute('suitVal');
+    
+  }
+
+  checkWin() {
+   
+      if ((foundationArr[0].length === 13) &&
+          (foundationArr[1].length === 13) &&
+          (foundationArr[2].length === 13) &&
+          (foundationArr[3].length === 13)) {
+
+            console.log ('you win');
+
+      }
     
   }
 

@@ -1,0 +1,14 @@
+#mainContainer {
+    background-color: rgb(130, 240, 255);
+    height: 300px;
+    width: 200px;
+}
+
+.button {
+    height: 90px;
+    width: 70px;
+    background-color: azure;
+   
+    margin-bottom: 10px;
+
+}
